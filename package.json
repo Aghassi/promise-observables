@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts":{
+    "build": "babel index.js --out-file transpiled.js --presets=env"
+  },
   "dependencies": {
     "execa": "^0.10.0",
     "listr": "^0.14.0",

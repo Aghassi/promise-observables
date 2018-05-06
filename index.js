@@ -20,7 +20,7 @@ new listr([
       {
             title: "Promise error",
             task:() => {
-                  run('np', ['--dry-run']);
+                  run('np', ['1.2.3.4']);
             }
       }
 ]).run();
