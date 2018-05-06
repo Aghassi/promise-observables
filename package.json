@@ -2,5 +2,11 @@
   "name": "promise-observables",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "execa": "^0.10.0",
+    "listr": "^0.14.0",
+    "np": "^2.20.1",
+    "stream-to-observable": "^0.2.0"
+  }
 }
