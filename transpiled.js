@@ -16,19 +16,25 @@ var _streamToObservable = require('stream-to-observable');
 
 var _streamToObservable2 = _interopRequireDefault(_streamToObservable);
 
-var _rxjs = require('rxjs');
+var _anyObservable = require('any-observable');
+
+var _anyObservable2 = _interopRequireDefault(_anyObservable);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var run = function run(cmd, args) {
-      var cp = (0, _execa2.default)(cmd, args);
+require('any-observable/register/rxjs-all');
 
-      return _rxjs.Observable.merge((0, _streamToObservable2.default)(cp.stdout.pipe((0, _split2.default)()), { await: cp }), (0, _streamToObservable2.default)(cp.stderr.pipe((0, _split2.default)()), { await: cp })).filter(Boolean);
+
+var exec = function exec(cmd, args) {
+	// Use `Observable` support if merged https://github.com/sindresorhus/execa/pull/26
+	var cp = (0, _execa2.default)(cmd, args);
+
+	return _anyObservable2.default.merge((0, _streamToObservable2.default)(cp.stdout.pipe((0, _split2.default)()), { await: cp }), (0, _streamToObservable2.default)(cp.stderr.pipe((0, _split2.default)()), { await: cp })).filter(Boolean);
 };
 
 new _Listr2.default([{
-      title: "Promise error",
-      task: function task() {
-            run('np', ['1.2.3.4']);
-      }
+	title: "Promise error",
+	task: function task() {
+		return exec('np', ['1.2.3.4']);
+	}
 }]).run();

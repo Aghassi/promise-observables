@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "scripts":{
+  "scripts": {
     "build": "babel index.js --out-file transpiled.js --presets=env"
   },
   "dependencies": {
+    "any-observable": "^0.3.0",
     "execa": "^0.10.0",
     "listr": "^0.14.0",
     "np": "^2.20.1",
